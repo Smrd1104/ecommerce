@@ -15,12 +15,15 @@ import ScrollToTopButton from "./Components/ScrollToTopButton/ScrollToTopButton"
 import Atropos from "atropos";
 import 'atropos/css'
 import Loader from "./Components/Loader/Loader";
+import { Route, Routes } from "react-router-dom";
+import RouteLayouts from "./Layout/RouteLayouts";
+import Home from "./Pages/Home";
 
 const App = () => {
 
-  const [orderPopup,setOrderPopup]=React.useState(false);
+  const [orderPopup, setOrderPopup] = React.useState(false);
 
-  const handleOrderPopup =()=>{
+  const handleOrderPopup = () => {
     setOrderPopup(!orderPopup)
   };
   React.useEffect(() => {
@@ -33,22 +36,13 @@ const App = () => {
     AOS.refresh();
   }, []);
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200" > 
-      <ScrollToTopButton/>
-      <Navbar handleOrderPopup={handleOrderPopup}/>
-      <Advertisement/>
-      <Hero />
-      <Products />
-      <TopProducts/>
-      <Banner/>
-      <Subscribe/>
-      <Products />
-      <Testimoinals/>
-      {/* <Atropos/> */}
-      <Footer/>
-    <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup}/>
+    <div>
+    <Routes>
+      <Route path='/' element={<RouteLayouts/>} >
+      <Route index element={<Home/>}/>
 
-    
+      </Route>
+    </Routes>
     </div>
   );
 };
