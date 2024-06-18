@@ -41,11 +41,11 @@ const Hero = () => {
     pauseOnFocus: true,
   };
   return (
-    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
+    <div className="relative  overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
       {/* background pattern */}
       <div className="w-[700px] h-[700px] bg-gradient-to-r from-primary to to-secondary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9 "></div>
       {/* hero section */}
-      <div className="relative z-10 container pb-8 sm:pb-0">
+      <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div key={data?.id}>
