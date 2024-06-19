@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import DarkMode from "./DarkMode";
 import Advertisement from "../Advertisement/Advertisement";
+import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import { FaSignInAlt, FaUserCircle } from "react-icons/fa";
 
 const Menu = [
   {
@@ -49,10 +52,37 @@ const DropdownLinks = [
     link: "#",
   },
 ];
-const Navbar = ({ handleOrderPopup }) => {
+const Navbar = ({ isAuthenticated, handleLogout }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleLogoutClick = () => {
+    handleLogout();
+    setDropdownOpen(false);
+  };
+
   return (
     <div className=" shadow-md  bg-white   dark:bg-gray-900 dark:text-white duration-200 relative z-40">
-     
+
       {/* upper Navbar */}
       <div className=" fixed z-[9999] top-0 left-0 right-0  bg-gradient-to-r from-primary to to-secondary py-4">
         <div className=" container flex justify-between items-center ">
@@ -82,6 +112,48 @@ const Navbar = ({ handleOrderPopup }) => {
               </span>
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
             </button>
+            {/* profile icons */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={toggleDropdown}
+                className=" bg-primary  dark:border-gray-500 dark:bg-gray-800 transition-all duration-300 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
+                >
+               
+                <span className="group-hover:block hidden transition-all duration-300">Profile</span>
+                <FaUserCircle className="text-xl text-white drop-shadow-sm cursor-pointer " />
+              </button>
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 px-2 z-10">
+                  {isAuthenticated ? (
+                    <button
+                      onClick={handleLogoutClick}
+                      className="inline-block w-full rounded-md px-3 py-2 hover:bg-gradient-to-r from-primary to-secondary/30  text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600  text-left flex items-center"
+                    >
+                      <FaSignOutAlt className="mr-2" />
+                      Logout
+                    </button>
+                  ) : (
+                    <>
+                      <Link
+                        to="/login"
+                        className="inline-block w-full rounded-md px-3 py-2 hover:bg-gradient-to-r from-primary to-secondary/30  text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600  text-left flex items-center"
+                      >
+                        <FaSignInAlt className="mr-2" />
+                        Login
+                      </Link>
+                      <Link
+                        to="/sign-up"
+                        className="inline-block w-full rounded-md px-3 py-2 hover:bg-gradient-to-r from-primary to-secondary/30  text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600  text-left flex items-center"
+                      >
+                        <FaUserCircle className="mr-2" />
+                        Sign Up
+                      </Link>
+                    
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
             {/* Dark mode switch */}
             <DarkMode />
           </div>
@@ -125,7 +197,7 @@ const Navbar = ({ handleOrderPopup }) => {
           </li>
         </ul>
       </div>
-      
+
     </div>
   );
 };

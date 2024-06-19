@@ -18,6 +18,8 @@ import Loader from "./Components/Loader/Loader";
 import { Route, Routes } from "react-router-dom";
 import RouteLayouts from "./Layout/RouteLayouts";
 import Home from "./Pages/Home";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
 
 const App = () => {
 
@@ -40,6 +42,8 @@ const App = () => {
     <Routes>
       <Route path='/' element={<RouteLayouts/>} >
       <Route index element={<Home/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/sign-up" element={<Signup/>}/>
 
       </Route>
     </Routes>
