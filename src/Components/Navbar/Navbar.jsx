@@ -52,7 +52,7 @@ const DropdownLinks = [
     link: "#",
   },
 ];
-const Navbar = ({ isAuthenticated, handleLogout }) => {
+const Navbar = ({ isAuthenticated, handleLogout,handleOrderPopup }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 

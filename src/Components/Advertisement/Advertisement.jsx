@@ -2,7 +2,44 @@
 
 import React from "react";
 import classes from "./Advertisement.module.css";
-
+const AdvertisementData = [
+  {
+    id: 1,
+    title: 'Mens Wear',
+  },
+  {
+    id: 2,
+    title: 'Kids Wear',
+  },
+  {
+    id: 3,
+    title: 'Womans Wear',
+  },
+  {
+    id: 4,
+    title: 'Top Wear',
+  },
+  {
+    id: 5,
+    title: 'Under Wear',
+  },
+  {
+    id: 6,
+    title: 'Beauty Product',
+  },
+  {
+    id: 7,
+    title: 'Electronics',
+  },
+  {
+    id: 8,
+    title: 'Footwear Wear',
+  },
+  {
+    id: 9,
+    title: 'Grocery',
+  },
+]
 const Advertisement = () => {
   return (
     <div
@@ -15,46 +52,12 @@ const Advertisement = () => {
           {/* Advertisement Here */}
           <div className="grid grid-cols-9  sm:grid-cols-8  items-center">
             {/* Content items */}
-            <p className={classes.advertisementItem}>
+            {AdvertisementData.map(data => (<p className={classes.advertisementItem}>
               <span>+</span>
-              Mens Wear
+              {data?.title}
             </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Kids Wear
-            </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Electronics
-            </p>
-            {/* Add more items as needed */}
-
-            {/* Copy of content for seamless loop */}
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Mens Wear
-            </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Kids Wear
-            </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Electronics
-            </p>
-            {/* Add more items as needed */}
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Mens Wear
-            </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Kids Wear
-            </p>
-            <p className={classes.advertisementItem}>
-              <span>+</span>
-              Electronics
-            </p>
+            ))
+            }
           </div>
         </div>
       </div>
