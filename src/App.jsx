@@ -20,6 +20,7 @@ import RouteLayouts from "./Layout/RouteLayouts";
 import Home from "./Pages/Home";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
+import Table from "./Components/Table/Table";
 
 const App = () => {
 
@@ -44,7 +45,7 @@ const App = () => {
       <Route index element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/sign-up" element={<Signup/>}/>
-
+      <Route path="/table" element={<Table/>}/>
       </Route>
     </Routes>
     </div>
